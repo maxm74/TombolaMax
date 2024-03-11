@@ -2,18 +2,18 @@ object FormTombola: TFormTombola
   Left = 259
   Height = 600
   Top = 89
-  Width = 811
+  Width = 850
   Caption = 'Tombola Max'
   ClientHeight = 600
-  ClientWidth = 811
+  ClientWidth = 850
   LCLVersion = '3.99.0.0'
+  OnCreate = FormCreate
   OnResize = FormResize
-  OnShow = FormShow
   object BCToolBar1: TBCToolBar
     Left = 0
     Height = 40
     Top = 0
-    Width = 811
+    Width = 850
     ButtonHeight = 32
     ButtonWidth = 32
     Caption = 'BCToolBar1'
@@ -25,6 +25,7 @@ object FormTombola: TFormTombola
       Top = 2
       AutoSize = True
       Caption = 'Nuova Partita'
+      OnClick = tbNewClick
     end
     object ToolButton1: TToolButton
       Left = 81
@@ -44,7 +45,7 @@ object FormTombola: TFormTombola
     Left = 0
     Height = 560
     Top = 40
-    Width = 561
+    Width = 550
     Align = alClient
     Background.Color = 4227327
     Background.Gradient1.StartColor = clWhite
@@ -86,10 +87,10 @@ object FormTombola: TFormTombola
     TabOrder = 1
   end
   object bcEdit1: TBCPanel
-    Left = 561
+    Left = 550
     Height = 560
     Top = 40
-    Width = 250
+    Width = 300
     Align = alRight
     Background.Color = clWhite
     Background.Gradient1.StartColor = clWhite
@@ -129,32 +130,7 @@ object FormTombola: TFormTombola
     Rounding.RoundX = 1
     Rounding.RoundY = 1
     TabOrder = 2
-    object edEstratto: TSpinEdit
-      Left = 16
-      Height = 23
-      Top = 344
-      Width = 50
-      MaxValue = 90
-      MinValue = 1
-      TabOrder = 0
-      Value = 1
-    end
-    object btEstrai: TBGRASpeedButton
-      Left = 72
-      Height = 22
-      Top = 345
-      Width = 71
-      Caption = 'Estrai'
-      OnClick = btEstraiClick
-    end
-    object btCasuale: TBGRASpeedButton
-      Left = 152
-      Height = 22
-      Top = 345
-      Width = 71
-      Caption = 'Casuale'
-    end
-    object BCLabel1: TBCLabel
+    object lbEstratto: TBCLabel
       Left = 60
       Height = 153
       Top = 40
@@ -176,7 +152,6 @@ object FormTombola: TFormTombola
       Background.Gradient1EndPercent = 35
       Background.Style = bbsClear
       Border.Style = bboNone
-      Caption = '90'
       FontEx.Color = clRed
       FontEx.FontQuality = fqSystemClearType
       FontEx.Height = 100
@@ -189,45 +164,11 @@ object FormTombola: TFormTombola
       Rounding.RoundX = 1
       Rounding.RoundY = 1
     end
-    object BCLabel2: TBCLabel
-      Left = 9
-      Height = 21
-      Top = 9
-      Width = 124
-      Background.Gradient1.StartColor = clWhite
-      Background.Gradient1.EndColor = clBlack
-      Background.Gradient1.GradientType = gtLinear
-      Background.Gradient1.Point1XPercent = 0
-      Background.Gradient1.Point1YPercent = 0
-      Background.Gradient1.Point2XPercent = 0
-      Background.Gradient1.Point2YPercent = 100
-      Background.Gradient2.StartColor = clWhite
-      Background.Gradient2.EndColor = clBlack
-      Background.Gradient2.GradientType = gtLinear
-      Background.Gradient2.Point1XPercent = 0
-      Background.Gradient2.Point1YPercent = 0
-      Background.Gradient2.Point2XPercent = 0
-      Background.Gradient2.Point2YPercent = 100
-      Background.Gradient1EndPercent = 35
-      Background.Style = bbsClear
-      Border.Style = bboNone
-      Caption = 'Ultimo Estratto :'
-      FontEx.Color = clDefault
-      FontEx.FontQuality = fqSystemClearType
-      FontEx.Height = 16
-      FontEx.Shadow = False
-      FontEx.ShadowRadius = 5
-      FontEx.ShadowOffsetX = 5
-      FontEx.ShadowOffsetY = 5
-      FontEx.Style = [fsBold]
-      Rounding.RoundX = 1
-      Rounding.RoundY = 1
-    end
-    object BCLabel3: TBCLabel
+    object lbEstratto1: TBCLabel
       Left = 24
-      Height = 74
-      Top = 240
-      Width = 66
+      Height = 67
+      Top = 232
+      Width = 60
       Background.Gradient1.StartColor = clWhite
       Background.Gradient1.EndColor = clBlack
       Background.Gradient1.GradientType = gtLinear
@@ -245,10 +186,9 @@ object FormTombola: TFormTombola
       Background.Gradient1EndPercent = 35
       Background.Style = bbsClear
       Border.Style = bboNone
-      Caption = '90'
       FontEx.Color = clDefault
       FontEx.FontQuality = fqSystemClearType
-      FontEx.Height = 40
+      FontEx.Height = 35
       FontEx.Shadow = True
       FontEx.ShadowColor = clSilver
       FontEx.ShadowRadius = 5
@@ -258,10 +198,10 @@ object FormTombola: TFormTombola
       Rounding.RoundX = 1
       Rounding.RoundY = 1
     end
-    object BCLabel4: TBCLabel
+    object lbEstrattoUltimi: TBCLabel
       Left = 9
       Height = 21
-      Top = 216
+      Top = 208
       Width = 114
       Background.Gradient1.StartColor = clWhite
       Background.Gradient1.EndColor = clBlack
@@ -291,12 +231,13 @@ object FormTombola: TFormTombola
       FontEx.Style = [fsBold]
       Rounding.RoundX = 1
       Rounding.RoundY = 1
+      Visible = False
     end
-    object BCLabel5: TBCLabel
+    object lbEstratto2: TBCLabel
       Left = 91
-      Height = 74
-      Top = 240
-      Width = 66
+      Height = 67
+      Top = 232
+      Width = 60
       Background.Gradient1.StartColor = clWhite
       Background.Gradient1.EndColor = clBlack
       Background.Gradient1.GradientType = gtLinear
@@ -314,10 +255,9 @@ object FormTombola: TFormTombola
       Background.Gradient1EndPercent = 35
       Background.Style = bbsClear
       Border.Style = bboNone
-      Caption = '90'
       FontEx.Color = clDefault
       FontEx.FontQuality = fqSystemClearType
-      FontEx.Height = 40
+      FontEx.Height = 35
       FontEx.Shadow = True
       FontEx.ShadowColor = clSilver
       FontEx.ShadowRadius = 5
@@ -327,11 +267,11 @@ object FormTombola: TFormTombola
       Rounding.RoundX = 1
       Rounding.RoundY = 1
     end
-    object BCLabel6: TBCLabel
+    object lbEstratto3: TBCLabel
       Left = 160
-      Height = 74
-      Top = 240
-      Width = 66
+      Height = 67
+      Top = 232
+      Width = 60
       Background.Gradient1.StartColor = clWhite
       Background.Gradient1.EndColor = clBlack
       Background.Gradient1.GradientType = gtLinear
@@ -349,10 +289,9 @@ object FormTombola: TFormTombola
       Background.Gradient1EndPercent = 35
       Background.Style = bbsClear
       Border.Style = bboNone
-      Caption = '90'
       FontEx.Color = clDefault
       FontEx.FontQuality = fqSystemClearType
-      FontEx.Height = 40
+      FontEx.Height = 35
       FontEx.Shadow = True
       FontEx.ShadowColor = clSilver
       FontEx.ShadowRadius = 5
@@ -390,10 +329,10 @@ object FormTombola: TFormTombola
       StateDisabled.BorderWidth = 1
     end
     object Panel1: TBCPanel
-      Left = 9
-      Height = 140
-      Top = 416
-      Width = 234
+      Left = 8
+      Height = 200
+      Top = 352
+      Width = 287
       Anchors = [akLeft, akBottom]
       Background.Color = clWhite
       Background.Gradient1.StartColor = clWhite
@@ -423,14 +362,14 @@ object FormTombola: TFormTombola
       FontEx.ShadowOffsetX = 5
       FontEx.ShadowOffsetY = 5
       FontEx.Style = []
-      ParentBackground = True
+      ParentBackground = False
       Rounding.RoundX = 1
       Rounding.RoundY = 1
-      TabOrder = 1
+      TabOrder = 0
       object BCLabel7: TBCLabel
-        Left = 32
+        Left = 9
         Height = 15
-        Top = 0
+        Top = 64
         Width = 109
         Background.Gradient1.StartColor = clWhite
         Background.Gradient1.EndColor = clBlack
@@ -462,9 +401,9 @@ object FormTombola: TFormTombola
       end
       object btSelTab1: TBGRASpeedButton
         Tag = 1
-        Left = 32
+        Left = 48
         Height = 40
-        Top = 16
+        Top = 80
         Width = 94
         AllowAllUp = True
         GroupIndex = 1
@@ -477,9 +416,9 @@ object FormTombola: TFormTombola
       end
       object btSelTab2: TBGRASpeedButton
         Tag = 2
-        Left = 126
+        Left = 142
         Height = 40
-        Top = 16
+        Top = 80
         Width = 94
         AllowAllUp = True
         Flat = True
@@ -493,9 +432,9 @@ object FormTombola: TFormTombola
       end
       object btSelTab3: TBGRASpeedButton
         Tag = 3
-        Left = 32
+        Left = 48
         Height = 40
-        Top = 56
+        Top = 120
         Width = 94
         AllowAllUp = True
         Flat = True
@@ -509,9 +448,9 @@ object FormTombola: TFormTombola
       end
       object btSelTab4: TBGRASpeedButton
         Tag = 4
-        Left = 126
+        Left = 142
         Height = 40
-        Top = 56
+        Top = 120
         Width = 94
         AllowAllUp = True
         Flat = True
@@ -525,9 +464,9 @@ object FormTombola: TFormTombola
       end
       object btSelTab5: TBGRASpeedButton
         Tag = 5
-        Left = 32
+        Left = 48
         Height = 40
-        Top = 96
+        Top = 160
         Width = 94
         AllowAllUp = True
         Flat = True
@@ -541,9 +480,9 @@ object FormTombola: TFormTombola
       end
       object btSelTab6: TBGRASpeedButton
         Tag = 6
-        Left = 126
+        Left = 142
         Height = 40
-        Top = 96
+        Top = 160
         Width = 94
         AllowAllUp = True
         Flat = True
@@ -555,6 +494,165 @@ object FormTombola: TFormTombola
         ShowCaption = False
         OnClick = btSelTab1Click
       end
+      object btEstraiCasuale: TBGRASpeedButton
+        Left = 136
+        Height = 22
+        Top = 7
+        Width = 71
+        Caption = 'Casuale'
+        Enabled = False
+      end
+      object btEstraiAnnulla: TBGRASpeedButton
+        Left = 208
+        Height = 22
+        Top = 7
+        Width = 71
+        Caption = 'Annulla'
+        OnClick = btEstraiClick
+      end
+      object btEstrai: TBGRASpeedButton
+        Left = 64
+        Height = 22
+        Top = 7
+        Width = 71
+        Caption = 'Estrai'
+        OnClick = btEstraiClick
+      end
+      object edEstratto: TSpinEdit
+        Left = 9
+        Height = 23
+        Top = 7
+        Width = 50
+        MaxValue = 90
+        MinValue = 1
+        TabOrder = 0
+        Value = 1
+      end
+      object btGioca2: TBGRASpeedButton
+        Tag = 2
+        Left = 9
+        Height = 22
+        Top = 36
+        Width = 50
+        AllowAllUp = True
+        Caption = 'Ambo'
+        GroupIndex = 2
+        OnClick = btGioca2Click
+      end
+      object btGioca3: TBGRASpeedButton
+        Tag = 3
+        Left = 56
+        Height = 22
+        Top = 36
+        Width = 50
+        AllowAllUp = True
+        Caption = 'Terno'
+        GroupIndex = 2
+        OnClick = btGioca2Click
+      end
+      object btGioca4: TBGRASpeedButton
+        Tag = 4
+        Left = 104
+        Height = 22
+        Top = 36
+        Width = 60
+        AllowAllUp = True
+        Caption = 'Quaterna'
+        GroupIndex = 2
+        OnClick = btGioca2Click
+      end
+      object btGioca5: TBGRASpeedButton
+        Tag = 5
+        Left = 161
+        Height = 22
+        Top = 36
+        Width = 60
+        AllowAllUp = True
+        Caption = 'Cinquina'
+        GroupIndex = 2
+        OnClick = btGioca2Click
+      end
+      object btGioca0: TBGRASpeedButton
+        Left = 219
+        Height = 22
+        Top = 36
+        Width = 60
+        AllowAllUp = True
+        Caption = 'Tombola'
+        GroupIndex = 2
+        OnClick = btGioca2Click
+      end
+    end
+    object lbEstrattoUltimo: TBCLabel
+      Left = 9
+      Height = 21
+      Top = 9
+      Width = 124
+      Background.Gradient1.StartColor = clWhite
+      Background.Gradient1.EndColor = clBlack
+      Background.Gradient1.GradientType = gtLinear
+      Background.Gradient1.Point1XPercent = 0
+      Background.Gradient1.Point1YPercent = 0
+      Background.Gradient1.Point2XPercent = 0
+      Background.Gradient1.Point2YPercent = 100
+      Background.Gradient2.StartColor = clWhite
+      Background.Gradient2.EndColor = clBlack
+      Background.Gradient2.GradientType = gtLinear
+      Background.Gradient2.Point1XPercent = 0
+      Background.Gradient2.Point1YPercent = 0
+      Background.Gradient2.Point2XPercent = 0
+      Background.Gradient2.Point2YPercent = 100
+      Background.Gradient1EndPercent = 35
+      Background.Style = bbsClear
+      Border.Style = bboNone
+      Caption = 'Ultimo Estratto :'
+      FontEx.Color = clDefault
+      FontEx.FontQuality = fqSystemClearType
+      FontEx.Height = 16
+      FontEx.Shadow = False
+      FontEx.ShadowRadius = 5
+      FontEx.ShadowOffsetX = 5
+      FontEx.ShadowOffsetY = 5
+      FontEx.Style = [fsBold]
+      Rounding.RoundX = 1
+      Rounding.RoundY = 1
+      Visible = False
+    end
+    object lbGioca: TBCLabel
+      Left = 1
+      Height = 56
+      Top = 288
+      Width = 249
+      Background.Gradient1.StartColor = clWhite
+      Background.Gradient1.EndColor = clBlack
+      Background.Gradient1.GradientType = gtLinear
+      Background.Gradient1.Point1XPercent = 0
+      Background.Gradient1.Point1YPercent = 0
+      Background.Gradient1.Point2XPercent = 0
+      Background.Gradient1.Point2YPercent = 100
+      Background.Gradient2.StartColor = clWhite
+      Background.Gradient2.EndColor = clBlack
+      Background.Gradient2.GradientType = gtLinear
+      Background.Gradient2.Point1XPercent = 0
+      Background.Gradient2.Point1YPercent = 0
+      Background.Gradient2.Point2XPercent = 0
+      Background.Gradient2.Point2YPercent = 100
+      Background.Gradient1EndPercent = 35
+      Background.Style = bbsClear
+      Border.Style = bboNone
+      Caption = 'Si gioca per: Ambo'
+      FontEx.Color = clRed
+      FontEx.FontQuality = fqSystemClearType
+      FontEx.Height = 26
+      FontEx.Shadow = True
+      FontEx.ShadowColor = clSilver
+      FontEx.ShadowRadius = 5
+      FontEx.ShadowOffsetX = 5
+      FontEx.ShadowOffsetY = 5
+      FontEx.Style = [fsBold]
+      Rounding.RoundX = 1
+      Rounding.RoundY = 1
+      Visible = False
     end
   end
   object BGRAImageList1: TBGRAImageList

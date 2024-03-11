@@ -5,28 +5,35 @@ unit TombolaMax_Main;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, ComCtrls, ExtCtrls, Grids, Buttons, StdCtrls, Spin,
-  BCToolBar, BCGameGrid, ColorSpeedButton, BCButtonFocus, BCButton, BGRASpeedButton, BCListBox, BCPanel, BCLabel,
-  BGRAImageList;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, ComCtrls, ExtCtrls,
+  Buttons, Spin, BCToolBar, ColorSpeedButton, BGRASpeedButton, BCListBox, BCPanel,
+  BCLabel, BGRAImageList;
 
 type
 
   { TFormTombola }
 
   TFormTombola = class(TForm)
-    BCLabel1: TBCLabel;
-    BCLabel2: TBCLabel;
-    BCLabel3: TBCLabel;
-    BCLabel4: TBCLabel;
-    BCLabel5: TBCLabel;
-    BCLabel6: TBCLabel;
+    lbEstrattoUltimo: TBCLabel;
+    btGioca2: TBGRASpeedButton;
+    btGioca3: TBGRASpeedButton;
+    btGioca4: TBGRASpeedButton;
+    btGioca5: TBGRASpeedButton;
+    btGioca0: TBGRASpeedButton;
+    btEstraiCasuale: TBGRASpeedButton;
+    btEstrai: TBGRASpeedButton;
+    btEstraiAnnulla: TBGRASpeedButton;
+    edEstratto: TSpinEdit;
+    lbEstratto: TBCLabel;
+    lbEstratto1: TBCLabel;
+    lbEstrattoUltimi: TBCLabel;
+    lbEstratto2: TBCLabel;
+    lbEstratto3: TBCLabel;
     BCLabel7: TBCLabel;
     bcTabellone: TBCPanel;
     bcEdit1: TBCPanel;
     BCToolBar1: TBCToolBar;
     BGRAImageList1: TBGRAImageList;
-    btEstrai: TBGRASpeedButton;
-    btCasuale: TBGRASpeedButton;
     btSelTab1: TBGRASpeedButton;
     btSelTab2: TBGRASpeedButton;
     btSelTab3: TBGRASpeedButton;
@@ -34,19 +41,23 @@ type
     btSelTab5: TBGRASpeedButton;
     btSelTab6: TBGRASpeedButton;
     ColorSpeedButton1: TColorSpeedButton;
-    edEstratto: TSpinEdit;
+    lbGioca: TBCLabel;
     Panel1: TBCPanel;
     tbNew: TToolButton;
     ToolButton1: TToolButton;
     tbGenerate: TToolButton;
+    procedure btGioca2Click(Sender: TObject);
     procedure btEstraiClick(Sender: TObject);
     procedure btSelTab1Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
     procedure FormResize(Sender: TObject);
-    procedure FormShow(Sender: TObject);
     procedure tbGenerateClick(Sender: TObject);
+    procedure tbNewClick(Sender: TObject);
   private
     buttons :array[1..90] of TColorSpeedButton;
     lastDown:TBGRASpeedButton;
+    cEstratti:Integer;
+    Estratti:array[0..3] of Integer;
   public
 
   end;
@@ -67,11 +78,49 @@ begin
   FormGenerate.ShowModal;
 end;
 
-procedure TFormTombola.FormShow(Sender: TObject);
+procedure TFormTombola.tbNewClick(Sender: TObject);
+var
+   i:Integer;
+
+begin
+  cEstratti :=0;
+  FillChar(Estratti, sizeof(Estratti), 0);
+
+  lbEstrattoUltimo.Visible:=False;
+  lbEstratto.Caption:='';
+  lbEstrattoUltimi.Visible:=False;
+  lbEstratto1.Caption:='';
+  lbEstratto2.Caption:='';
+  lbEstratto3.Caption:='';
+  lbGioca.Visible:=False;
+  lbGioca.Caption:='Si gioca per: Ambo';
+  edEstratto.Value:=1;
+  btGioca2.Down:=False;
+  btGioca3.Down:=False;
+  btGioca4.Down:=False;
+  btGioca5.Down:=False;
+  btGioca0.Down:=False;
+  btSelTab1.Down:=False;
+  btSelTab2.Down:=False;
+  btSelTab3.Down:=False;
+  btSelTab4.Down:=False;
+  btSelTab5.Down:=False;
+  btSelTab6.Down:=False;
+  for i:=1 to 90 do
+  begin
+    buttons[i].Enabled:=True;
+    buttons[i].StateNormal.Color:=clWhite;
+    buttons[i].Tag :=0;
+  end;
+end;
+
+procedure TFormTombola.FormCreate(Sender: TObject);
 var
    x, y, i, butWidth, butHeight :Integer;
 
 begin
+  FillChar(estratti, sizeof(estratti), 0);
+
   butHeight :=(bcTabellone.Height-10) div 9;
   butWidth :=(bcTabellone.Width-10) div 10;
   i:=1;
@@ -85,7 +134,7 @@ begin
     buttons[i].Caption:=IntToStr(i);
     buttons[i].ParentFont:=False;
    // buttons[i].Font.Style:=[fsBold];
-    buttons[i].Tag:=i;
+    buttons[i].Tag:=0;  //Non estratto
     buttons[i].Parent :=bcTabellone;
     inc(i);
   end;
@@ -172,9 +221,49 @@ begin
 end;
 
 procedure TFormTombola.btEstraiClick(Sender: TObject);
+var
+   i :Integer;
+
+
 begin
-  buttons[edEstratto.Value].StateNormal.Color:=clRed;
-//  buttons[edEstratto.Value].StateNormal.BorderWidth:=Trunc(buttons[edEstratto.Value].Width*25/100);
+  if (buttons[edEstratto.Value].Tag = 0) then
+  begin
+    Inc(cEstratti);
+    lbEstrattoUltimi.Visible :=(cEstratti>1);
+    if (cEstratti>1) then
+    begin;
+      estratti[3] :=estratti[2];
+      estratti[2] :=estratti[1];
+      estratti[1] :=estratti[0];
+
+      if (estratti[1]<>0) then lbEstratto1.Caption :=IntToStr(estratti[1]) else lbEstratto1.Caption :='';
+      if (estratti[2]<>0) then lbEstratto2.Caption :=IntToStr(estratti[2]) else lbEstratto2.Caption :='';
+      if (estratti[3]<>0) then lbEstratto3.Caption :=IntToStr(estratti[3]) else lbEstratto3.Caption :='';
+    end;
+    estratti[0] :=edEstratto.Value;
+
+    buttons[edEstratto.Value].StateNormal.Color :=clRed;
+    buttons[edEstratto.Value].Tag := 1;
+    lbEstrattoUltimo.Visible :=True;
+    lbEstratto.Caption :=IntToStr(edEstratto.Value);
+  end
+  else MessageDlg('Numero '+IntToStr(edEstratto.Value)+' già estratto', mtError, [mbOk], 0);
+end;
+
+procedure TFormTombola.btGioca2Click(Sender: TObject);
+begin
+  if TBGRASpeedButton(Sender).Down then
+  begin
+    Case TBGRASpeedButton(Sender).Tag of
+     0:lbGioca.Caption:='Si gioca per: Tombolino';
+     2:lbGioca.Caption:='Si gioca per: Terno';
+     3:lbGioca.Caption:='Si gioca per: Quaterna';
+     4:lbGioca.Caption:='Si gioca per: Cinquina';
+     5:lbGioca.Caption:='Si gioca per: Tombola';
+     end;
+    lbGioca.Visible :=True
+  end
+  else lbGioca.Visible :=False;
 end;
 
 end.
