@@ -46,6 +46,8 @@ type
     tbNew: TToolButton;
     ToolButton1: TToolButton;
     tbGenerate: TToolButton;
+    procedure btEstraiAnnullaClick(Sender: TObject);
+    procedure btEstraiCasualeClick(Sender: TObject);
     procedure btGioca2Click(Sender: TObject);
     procedure btEstraiClick(Sender: TObject);
     procedure btSelTab1Click(Sender: TObject);
@@ -58,6 +60,8 @@ type
     lastDown:TBGRASpeedButton;
     cEstratti:Integer;
     Estratti:array[0..3] of Integer;
+    NumeriDisponibili:array of Integer;
+
   public
 
   end;
@@ -86,6 +90,9 @@ begin
   cEstratti :=0;
   FillChar(Estratti, sizeof(Estratti), 0);
 
+  SetLength(NumeriDisponibili, 90);
+  for i:=0 to 89 do NumeriDisponibili[i] :=i+1;
+
   lbEstrattoUltimo.Visible:=False;
   lbEstratto.Caption:='';
   lbEstrattoUltimi.Visible:=False;
@@ -110,21 +117,21 @@ begin
   begin
     buttons[i].Enabled:=True;
     buttons[i].StateNormal.Color:=clWhite;
-    buttons[i].Tag :=0;
+    buttons[i].Tag :=0; //Non estratto
   end;
 end;
 
 procedure TFormTombola.FormCreate(Sender: TObject);
 var
-   x, y, i, butWidth, butHeight :Integer;
+   x, y, i :Integer;
 
 begin
   FillChar(estratti, sizeof(estratti), 0);
 
-  butHeight :=(bcTabellone.Height-10) div 9;
-  butWidth :=(bcTabellone.Width-10) div 10;
-  i:=1;
+  SetLength(NumeriDisponibili, 90);
+  for i:=0 to 89 do NumeriDisponibili[i] :=i+1;
 
+  i:=1;
   for y:=0 to 8 do
   for x:=0 to 9 do
   begin
@@ -133,7 +140,6 @@ begin
     buttons[i].StateDisabled.Color:=clSkyBlue;
     buttons[i].Caption:=IntToStr(i);
     buttons[i].ParentFont:=False;
-   // buttons[i].Font.Style:=[fsBold];
     buttons[i].Tag:=0;  //Non estratto
     buttons[i].Parent :=bcTabellone;
     inc(i);
@@ -147,8 +153,8 @@ var
 begin
   butHeight :=(bcTabellone.Height-14) div 9;
   butWidth :=(bcTabellone.Width-12) div 10;
-  i:=1;
 
+  i:=1;
   for y:=0 to 8 do
   for x:=0 to 9 do
   begin
@@ -224,7 +230,6 @@ procedure TFormTombola.btEstraiClick(Sender: TObject);
 var
    i :Integer;
 
-
 begin
   if (buttons[edEstratto.Value].Tag = 0) then
   begin
@@ -232,15 +237,18 @@ begin
     lbEstrattoUltimi.Visible :=(cEstratti>1);
     if (cEstratti>1) then
     begin;
-      estratti[3] :=estratti[2];
-      estratti[2] :=estratti[1];
-      estratti[1] :=estratti[0];
+      if (Estratti[0] > 0) then
+      begin
+        Estratti[3] :=Estratti[2];
+        Estratti[2] :=Estratti[1];
+        Estratti[1] :=Estratti[0];
+      end;
 
-      if (estratti[1]<>0) then lbEstratto1.Caption :=IntToStr(estratti[1]) else lbEstratto1.Caption :='';
-      if (estratti[2]<>0) then lbEstratto2.Caption :=IntToStr(estratti[2]) else lbEstratto2.Caption :='';
-      if (estratti[3]<>0) then lbEstratto3.Caption :=IntToStr(estratti[3]) else lbEstratto3.Caption :='';
+      if (Estratti[1]<>0) then lbEstratto1.Caption :=IntToStr(Estratti[1]) else lbEstratto1.Caption :='';
+      if (Estratti[2]<>0) then lbEstratto2.Caption :=IntToStr(Estratti[2]) else lbEstratto2.Caption :='';
+      if (Estratti[3]<>0) then lbEstratto3.Caption :=IntToStr(Estratti[3]) else lbEstratto3.Caption :='';
     end;
-    estratti[0] :=edEstratto.Value;
+    Estratti[0] :=edEstratto.Value;
 
     buttons[edEstratto.Value].StateNormal.Color :=clRed;
     buttons[edEstratto.Value].Tag := 1;
@@ -264,6 +272,63 @@ begin
     lbGioca.Visible :=True
   end
   else lbGioca.Visible :=False;
+end;
+
+procedure TFormTombola.btEstraiCasualeClick(Sender: TObject);
+var
+   iNumero, Numero :Integer;
+
+begin
+  if (NumeriDisponibili<>nil)
+  then begin
+         Randomize;
+         iNumero :=Random(Length(NumeriDisponibili));
+         Numero :=NumeriDisponibili[iNumero];
+         Delete(NumeriDisponibili, iNumero, 1);
+         edEstratto.Value:=Numero;
+         btEstraiClick(nil);
+       end
+  else begin
+         if (MessageDlg('Numeri Finiti :'+#13#10+'Vuoi iniziare una Nuova Partita ?', mtConfirmation, [mbYes, mbNo], 0)=mrYes)
+         then tbNewClick(nil);
+       end;
+end;
+
+procedure TFormTombola.btEstraiAnnullaClick(Sender: TObject);
+var
+   iNumero, pNumero, Numero:Integer;
+   fNumero:Boolean;
+
+begin
+  Numero :=Estratti[0];
+  if (Numero > 0) then
+  begin
+    buttons[Numero].StateNormal.Color :=clWhite;
+    buttons[Numero].Tag :=0;
+    lbEstratto.Caption :='';
+
+    pNumero :=Numero-1; //Presunta posizione originaria
+    fNumero :=False;
+    for iNumero:=0 to High(NumeriDisponibili) do
+      if (NumeriDisponibili[iNumero] = Numero)
+      then begin
+             fNumero :=True;
+             break;
+           end
+       else if (NumeriDisponibili[iNumero] < Numero) then pNumero :=iNumero;
+
+    if (fNumero=False) then
+    begin
+      if (pNumero+1 > High(NumeriDisponibili))
+      then begin
+             SetLength(NumeriDisponibili, Length(NumeriDisponibili)+1);
+             NumeriDisponibili[High(NumeriDisponibili)] :=Numero;
+           end
+      else Insert(Numero, NumeriDisponibili, pNumero+1);
+    end;
+
+    Estratti[0] :=0;
+  end;
 end;
 
 end.

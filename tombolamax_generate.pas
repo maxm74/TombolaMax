@@ -5,8 +5,8 @@ unit tombolamax_generate;
 interface
 
 uses
-  Classes, Variants, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtDlgs, LR_DSet, LR_Class, BCButton,
-  BCTrackbarUpdown, BCLabel, BGRASpeedButton, BCListBox;
+  Classes, Variants, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ExtDlgs, ExtCtrls, LR_DSet, LR_Class,
+  BCButton, BCTrackbarUpdown, BCLabel, BGRASpeedButton, BCListBox;
 
 type
   TColonna = record
@@ -24,6 +24,8 @@ type
     BCLabel2: TBCLabel;
     BCLabel3: TBCLabel;
     frReportCartelleBack: TfrReport;
+    ImageNumeri: TImage;
+    ImageCartella: TImage;
     OpenPictureDialog: TOpenPictureDialog;
     panSfondo: TBCPaperPanel;
     btPictureNumeri: TBGRASpeedButton;
@@ -193,10 +195,12 @@ begin
        then begin
               pictureNumeri:=OpenPictureDialog.FileName;
               edPictureNumeri.Text:=pictureNumeri;
+              ImageNumeri.Picture.LoadFromFile(pictureNumeri);
             end
        else begin
               pictureCartella:=OpenPictureDialog.FileName;
               edpictureCartella.Text:=pictureCartella;
+              ImageCartella.Picture.LoadFromFile(pictureCartella);
             end;
 end;
 

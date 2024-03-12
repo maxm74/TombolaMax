@@ -500,7 +500,7 @@ object FormTombola: TFormTombola
         Top = 7
         Width = 71
         Caption = 'Casuale'
-        Enabled = False
+        OnClick = btEstraiCasualeClick
       end
       object btEstraiAnnulla: TBGRASpeedButton
         Left = 208
@@ -508,7 +508,7 @@ object FormTombola: TFormTombola
         Top = 7
         Width = 71
         Caption = 'Annulla'
-        OnClick = btEstraiClick
+        OnClick = btEstraiAnnullaClick
       end
       object btEstrai: TBGRASpeedButton
         Left = 64
