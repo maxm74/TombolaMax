@@ -7,7 +7,7 @@
     <KeyWords Value=""/>
     <Comments Value=""/>
     <ReportCreateDate Value="2024-02-28 17:59:27"/>
-    <ReportLastChange Value="2024-03-13 10:13:48"/>
+    <ReportLastChange Value="2024-03-13 12:30:51"/>
     <ReportVersionBuild Value=""/>
     <ReportVersionMajor Value=""/>
     <ReportVersionMinor Value=""/>
@@ -304,9 +304,9 @@
           <Typ Value="gtMemo"/>
           <StreamMode Value="0"/>
           <Size>
-            <Left Value="292"/>
-            <Top Value="38"/>
-            <Width Value="212"/>
+            <Left Value="397"/>
+            <Top Value="59"/>
+            <Width Value="108"/>
             <Height Value="30"/>
           </Size>
           <Flags Value="1"/>
@@ -315,13 +315,13 @@
             <FrameColor Value="0"/>
             <FrameStyle Value="frsSolid"/>
             <FrameWidth Value="1"/>
-            <FrameBorders Value=""/>
+            <FrameBorders Value="frbLeft,frbRight"/>
             <Restrictions Value=""/>
           </Frames>
           <Data>
             <Format Value="556"/>
             <FormatStr Value=""/>
-            <Memo Value="Cartella n° [NUMCART]&#xD;&#xA;"/>
+            <Memo Value="[NUMCART]&#xD;&#xA;"/>
             <Script Value=""/>
             <GapX Value="0"/>
             <GapY Value="0"/>
@@ -362,8 +362,8 @@
           <Size>
             <Left Value="20"/>
             <Top Value="38"/>
-            <Width Value="268"/>
-            <Height Value="30"/>
+            <Width Value="377"/>
+            <Height Value="49"/>
           </Size>
           <Flags Value="1"/>
           <FillColor Value="536870911"/>
@@ -371,7 +371,7 @@
             <FrameColor Value="0"/>
             <FrameStyle Value="frsSolid"/>
             <FrameWidth Value="1"/>
-            <FrameBorders Value=""/>
+            <FrameBorders Value="frbLeft,frbTop"/>
             <Restrictions Value=""/>
           </Frames>
           <Data>
@@ -404,7 +404,7 @@
             <HighlightStr Value=""/>
           </Highlight>
           <Alignment Value="taLeftJustify"/>
-          <Layout Value="tlTop"/>
+          <Layout Value="tlCenter"/>
           <Angle Value="0"/>
           <Justify Value="False"/>
           <Cursor Value="0"/>
@@ -1753,7 +1753,63 @@
           <Justify Value="False"/>
           <Cursor Value="0"/>
         </Object32>
-        <ObjectCount Value="32"/>
+        <Object33>
+          <Name Value="Memo30"/>
+          <ClassName Value="TfrMemoView"/>
+          <Visible Value="True"/>
+          <Typ Value="gtMemo"/>
+          <StreamMode Value="0"/>
+          <Size>
+            <Left Value="397"/>
+            <Top Value="38"/>
+            <Width Value="108"/>
+            <Height Value="20"/>
+          </Size>
+          <Flags Value="1"/>
+          <FillColor Value="536870911"/>
+          <Frames>
+            <FrameColor Value="0"/>
+            <FrameStyle Value="frsSolid"/>
+            <FrameWidth Value="1"/>
+            <FrameBorders Value="frbLeft,frbTop,frbRight,frbBottom"/>
+            <Restrictions Value=""/>
+          </Frames>
+          <Data>
+            <Format Value="556"/>
+            <FormatStr Value=""/>
+            <Memo Value="Cartella n°&#xD;&#xA;"/>
+            <Script Value=""/>
+            <GapX Value="0"/>
+            <GapY Value="0"/>
+            <OnClick Value=""/>
+            <OnMouseEnter Value=""/>
+            <OnMouseLeave Value=""/>
+            <DetailReport Value=""/>
+            <ParagraphGap Value="0"/>
+            <LineSpacing Value="2"/>
+          </Data>
+          <Tag Value=""/>
+          <FURLInfo Value=""/>
+          <Font>
+            <Name Value="Arial"/>
+            <Size Value="12"/>
+            <Color Value="clBlack"/>
+            <Charset Value="0"/>
+            <Style Value="fsBold"/>
+          </Font>
+          <Highlight>
+            <FontStyle Value="2"/>
+            <FontColor Value="clBlack"/>
+            <FillColor Value="clWhite"/>
+            <HighlightStr Value=""/>
+          </Highlight>
+          <Alignment Value="taRightJustify"/>
+          <Layout Value="tlTop"/>
+          <Angle Value="0"/>
+          <Justify Value="False"/>
+          <Cursor Value="0"/>
+        </Object33>
+        <ObjectCount Value="33"/>
       </Page1>
       <FVal>
         <Count Value="0"/>

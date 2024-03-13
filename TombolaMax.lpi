@@ -105,7 +105,7 @@
     <Version Value="11"/>
     <PathDelim Value="\"/>
     <Target>
-      <Filename Value="TombolaMax"/>
+      <Filename Value="bin\$(TargetCPU)-$(TargetOS)\TombolaMax-dbg"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>

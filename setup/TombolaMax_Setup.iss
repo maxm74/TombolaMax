@@ -28,16 +28,17 @@ SetupIconFile=C:\Programming\Lazarus\Projects\TombolaMax\TombolaMax.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
+;LicenseFile=c:\Programming\Lazarus\Projects\TombolaMax\LICENSE
 
 [Languages]
 Name: "italian"; MessagesFile: "compiler:Languages\Italian.isl"
 
 [Tasks]
-Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
+Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}";
 
 [Files]
 Source: "C:\Programming\Lazarus\Projects\TombolaMax\bin\x86_64-win64\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Programming\Lazarus\Projects\TombolaMax\bin\x86_64-win64\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Programming\Lazarus\Projects\TombolaMax\bin\x86_64-win64\*.lrf"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
