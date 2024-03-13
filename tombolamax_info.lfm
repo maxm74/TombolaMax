@@ -1,19 +1,19 @@
-object FormGenerate: TFormGenerate
-  Left = 249
-  Height = 322
-  Top = 122
-  Width = 390
+object FormInfo: TFormInfo
+  Left = 281
+  Height = 220
+  Top = 189
+  Width = 270
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
-  Caption = 'Genera Cartelle'
-  ClientHeight = 322
-  ClientWidth = 390
+  Caption = 'TombolaMax Info'
+  ClientHeight = 220
+  ClientWidth = 270
   Position = poScreenCenter
   LCLVersion = '3.99.0.0'
-  object btGenerate: TBCButton
-    Left = 128
+  object btOk: TBCButton
+    Left = 56
     Height = 33
-    Top = 278
+    Top = 176
     Width = 123
     StateClicked.Background.Gradient1.StartColor = 8404992
     StateClicked.Background.Gradient1.EndColor = 4194304
@@ -87,12 +87,12 @@ object FormGenerate: TFormGenerate
     StateNormal.FontEx.ShadowOffsetX = 1
     StateNormal.FontEx.ShadowOffsetY = 1
     StateNormal.FontEx.Style = [fsBold]
-    Caption = 'Genera'
+    Caption = 'Ok'
     Color = clNone
     DropDownWidth = 16
     DropDownArrowSize = 8
     GlobalOpacity = 255
-    OnClick = btGenerateClick
+    OnClick = btOkClick
     ParentColor = False
     Rounding.RoundX = 12
     Rounding.RoundY = 12
@@ -101,129 +101,11 @@ object FormGenerate: TFormGenerate
     TextApplyGlobalOpacity = False
     MemoryUsage = bmuHigh
   end
-  object totCartelle: TBCTrackbarUpdown
-    Left = 24
-    Height = 24
-    Top = 68
-    Width = 64
-    AllowNegativeValues = False
-    BarExponent = 1
-    Increment = 12
-    LongTimeInterval = 400
-    MinValue = 12
-    MaxValue = 600
-    Value = 60
-    ShortTimeInterval = 100
-    Background.Color = clWindow
-    Background.Gradient1.StartColor = clWhite
-    Background.Gradient1.EndColor = clBlack
-    Background.Gradient1.GradientType = gtLinear
-    Background.Gradient1.Point1XPercent = 0
-    Background.Gradient1.Point1YPercent = 0
-    Background.Gradient1.Point2XPercent = 0
-    Background.Gradient1.Point2YPercent = 100
-    Background.Gradient2.StartColor = clWhite
-    Background.Gradient2.EndColor = clBlack
-    Background.Gradient2.GradientType = gtLinear
-    Background.Gradient2.Point1XPercent = 0
-    Background.Gradient2.Point1YPercent = 0
-    Background.Gradient2.Point2XPercent = 0
-    Background.Gradient2.Point2YPercent = 100
-    Background.Gradient1EndPercent = 35
-    Background.Style = bbsColor
-    ButtonBackground.Gradient1.StartColor = clBtnShadow
-    ButtonBackground.Gradient1.EndColor = clBtnFace
-    ButtonBackground.Gradient1.GradientType = gtLinear
-    ButtonBackground.Gradient1.Point1XPercent = 0
-    ButtonBackground.Gradient1.Point1YPercent = -50
-    ButtonBackground.Gradient1.Point2XPercent = 0
-    ButtonBackground.Gradient1.Point2YPercent = 50
-    ButtonBackground.Gradient2.StartColor = clBtnFace
-    ButtonBackground.Gradient2.EndColor = clBtnShadow
-    ButtonBackground.Gradient2.GradientType = gtLinear
-    ButtonBackground.Gradient2.Point1XPercent = 0
-    ButtonBackground.Gradient2.Point1YPercent = 50
-    ButtonBackground.Gradient2.Point2XPercent = 0
-    ButtonBackground.Gradient2.Point2YPercent = 150
-    ButtonBackground.Gradient1EndPercent = 50
-    ButtonBackground.Style = bbsGradient
-    ButtonDownBackground.Color = clBtnShadow
-    ButtonDownBackground.Gradient1.StartColor = clWhite
-    ButtonDownBackground.Gradient1.EndColor = clBlack
-    ButtonDownBackground.Gradient1.GradientType = gtLinear
-    ButtonDownBackground.Gradient1.Point1XPercent = 0
-    ButtonDownBackground.Gradient1.Point1YPercent = 0
-    ButtonDownBackground.Gradient1.Point2XPercent = 0
-    ButtonDownBackground.Gradient1.Point2YPercent = 100
-    ButtonDownBackground.Gradient2.StartColor = clWhite
-    ButtonDownBackground.Gradient2.EndColor = clBlack
-    ButtonDownBackground.Gradient2.GradientType = gtLinear
-    ButtonDownBackground.Gradient2.Point1XPercent = 0
-    ButtonDownBackground.Gradient2.Point1YPercent = 0
-    ButtonDownBackground.Gradient2.Point2XPercent = 0
-    ButtonDownBackground.Gradient2.Point2YPercent = 100
-    ButtonDownBackground.Gradient1EndPercent = 35
-    ButtonDownBackground.Style = bbsColor
-    Border.Color = clWindowText
-    Border.Style = bboSolid
-    Rounding.RoundX = 1
-    Rounding.RoundY = 1
-    Font.Color = clWindowText
-    Font.Name = 'Arial'
-    HasTrackBar = True
-    ArrowColor = clBtnText
-    TabOrder = 0
-    TabStop = True
-    UseDockManager = False
-    OnEnter = totCartelleEnter
-    OnExit = totCartelleEnter
-  end
-  object BCLabel1: TBCLabel
-    Left = 9
-    Height = 15
-    Top = 48
-    Width = 106
-    Background.Gradient1.StartColor = clWhite
-    Background.Gradient1.EndColor = clBlack
-    Background.Gradient1.GradientType = gtLinear
-    Background.Gradient1.Point1XPercent = 0
-    Background.Gradient1.Point1YPercent = 0
-    Background.Gradient1.Point2XPercent = 0
-    Background.Gradient1.Point2YPercent = 100
-    Background.Gradient2.StartColor = clWhite
-    Background.Gradient2.EndColor = clBlack
-    Background.Gradient2.GradientType = gtLinear
-    Background.Gradient2.Point1XPercent = 0
-    Background.Gradient2.Point1YPercent = 0
-    Background.Gradient2.Point2XPercent = 0
-    Background.Gradient2.Point2YPercent = 100
-    Background.Gradient1EndPercent = 35
-    Background.Style = bbsClear
-    Border.Style = bboNone
-    Caption = 'Numero di Cartelle :'
-    FontEx.Color = clDefault
-    FontEx.FontQuality = fqSystemClearType
-    FontEx.Shadow = False
-    FontEx.ShadowRadius = 5
-    FontEx.ShadowOffsetX = 5
-    FontEx.ShadowOffsetY = 5
-    FontEx.Style = []
-    Rounding.RoundX = 1
-    Rounding.RoundY = 1
-  end
-  object edTitolo: TEdit
-    Left = 24
-    Height = 23
-    Top = 18
-    Width = 206
-    TabOrder = 1
-    Text = 'TombolaMax'
-  end
-  object BCLabel2: TBCLabel
+  object lbEstratto1: TBCLabel
     Left = 8
-    Height = 15
+    Height = 67
     Top = 0
-    Width = 36
+    Width = 248
     Background.Gradient1.StartColor = clWhite
     Background.Gradient1.EndColor = clBlack
     Background.Gradient1.GradientType = gtLinear
@@ -241,149 +123,87 @@ object FormGenerate: TFormGenerate
     Background.Gradient1EndPercent = 35
     Background.Style = bbsClear
     Border.Style = bboNone
-    Caption = 'Titolo :'
-    FontEx.Color = clDefault
+    Caption = 'Tombola Max'
+    FontEx.Color = 4227327
     FontEx.FontQuality = fqSystemClearType
-    FontEx.Shadow = False
+    FontEx.Height = 35
+    FontEx.Shadow = True
+    FontEx.ShadowColor = clSilver
     FontEx.ShadowRadius = 5
     FontEx.ShadowOffsetX = 5
     FontEx.ShadowOffsetY = 5
-    FontEx.Style = []
+    FontEx.Style = [fsBold]
     Rounding.RoundX = 1
     Rounding.RoundY = 1
   end
-  object cbBackImage: TCheckBox
-    Left = 9
-    Height = 19
-    Top = 148
-    Width = 121
-    Caption = 'Usa Sfondo Cartella'
-    TabOrder = 2
-    OnChange = cbBackImageChange
-  end
-  object BCLabel3: TBCLabel
-    Left = 9
-    Height = 15
-    Top = 96
-    Width = 87
-    Background.Gradient1.StartColor = clWhite
-    Background.Gradient1.EndColor = clBlack
-    Background.Gradient1.GradientType = gtLinear
-    Background.Gradient1.Point1XPercent = 0
-    Background.Gradient1.Point1YPercent = 0
-    Background.Gradient1.Point2XPercent = 0
-    Background.Gradient1.Point2YPercent = 100
-    Background.Gradient2.StartColor = clWhite
-    Background.Gradient2.EndColor = clBlack
-    Background.Gradient2.GradientType = gtLinear
-    Background.Gradient2.Point1XPercent = 0
-    Background.Gradient2.Point1YPercent = 0
-    Background.Gradient2.Point2XPercent = 0
-    Background.Gradient2.Point2YPercent = 100
-    Background.Gradient1EndPercent = 35
-    Background.Style = bbsClear
-    Border.Style = bboNone
-    Caption = 'Sfondo Numeri :'
-    FontEx.Color = clDefault
-    FontEx.FontQuality = fqSystemClearType
-    FontEx.Shadow = False
-    FontEx.ShadowRadius = 5
-    FontEx.ShadowOffsetX = 5
-    FontEx.ShadowOffsetY = 5
-    FontEx.Style = []
-    Rounding.RoundX = 1
-    Rounding.RoundY = 1
-  end
-  object edPictureNumeri: TEdit
+  object lbEstratto2: TBCLabel
     Left = 24
-    Height = 23
-    Top = 114
-    Width = 176
-    TabOrder = 3
+    Height = 52
+    Top = 72
+    Width = 115
+    Background.Gradient1.StartColor = clWhite
+    Background.Gradient1.EndColor = clBlack
+    Background.Gradient1.GradientType = gtLinear
+    Background.Gradient1.Point1XPercent = 0
+    Background.Gradient1.Point1YPercent = 0
+    Background.Gradient1.Point2XPercent = 0
+    Background.Gradient1.Point2YPercent = 100
+    Background.Gradient2.StartColor = clWhite
+    Background.Gradient2.EndColor = clBlack
+    Background.Gradient2.GradientType = gtLinear
+    Background.Gradient2.Point1XPercent = 0
+    Background.Gradient2.Point1YPercent = 0
+    Background.Gradient2.Point2XPercent = 0
+    Background.Gradient2.Point2YPercent = 100
+    Background.Gradient1EndPercent = 35
+    Background.Style = bbsClear
+    Border.Style = bboNone
+    Caption = 'Ver.  1.0'
+    FontEx.Color = clGray
+    FontEx.FontQuality = fqSystemClearType
+    FontEx.Height = 24
+    FontEx.Shadow = True
+    FontEx.ShadowColor = clSilver
+    FontEx.ShadowRadius = 5
+    FontEx.ShadowOffsetX = 5
+    FontEx.ShadowOffsetY = 5
+    FontEx.Style = [fsBold]
+    Rounding.RoundX = 1
+    Rounding.RoundY = 1
   end
-  object btPictureNumeri: TBGRASpeedButton
-    Left = 206
-    Height = 22
-    Top = 114
-    Width = 23
-    Caption = '...'
-    OnClick = btPictureNumeriClick
-  end
-  object panSfondo: TBCPaperPanel
-    Left = 15
-    Height = 105
-    Top = 166
-    Width = 368
-    Alignment = taLeftJustify
-    Caption = 'panSfondo'
-    ClientHeight = 105
-    ClientWidth = 368
-    Color = clWhite
-    Enabled = False
-    ParentColor = False
-    TabOrder = 4
-    object edPictureCartella: TEdit
-      Left = 8
-      Height = 23
-      Top = 8
-      Width = 176
-      TabOrder = 0
-    end
-    object btPictureCartella: TBGRASpeedButton
-      Left = 190
-      Height = 22
-      Top = 9
-      Width = 23
-      Caption = '...'
-      OnClick = btPictureNumeriClick
-    end
-    object ImageCartella: TImage
-      Left = 224
-      Height = 90
-      Top = 8
-      Width = 132
-      Stretch = True
-    end
-  end
-  object ImageNumeri: TImage
-    Left = 239
-    Height = 90
-    Top = 64
-    Width = 132
-    Stretch = True
-  end
-  object frCartelle: TfrUserDataset
-    OnCheckEOF = frCartelleCheckEOF
-    OnFirst = frCartelleFirst
-    OnNext = frCartelleNext
-    Left = 16
-    Top = 272
-  end
-  object frReportCartelle: TfrReport
-    Dataset = frCartelle
-    InitialZoom = pzDefault
-    Options = []
-    PreviewButtons = [pbZoom, pbPrint, pbExit]
-    DataType = dtDataSet
-    OnGetValue = frReportCartelleGetValue
-    OnEnterRect = frReportCartelleEnterRect
-    OnAfterPrint = frReportCartelleAfterPrint
-    Left = 280
-    Top = 264
-  end
-  object OpenPictureDialog: TOpenPictureDialog
-    Left = 88
-    Top = 272
-  end
-  object frReportCartelleBack: TfrReport
-    Dataset = frCartelle
-    InitialZoom = pzDefault
-    Options = []
-    PreviewButtons = [pbZoom, pbPrint, pbExit]
-    DataType = dtDataSet
-    OnGetValue = frReportCartelleGetValue
-    OnEnterRect = frReportCartelleEnterRect
-    Left = 352
-    Top = 264
+  object lbEstratto3: TBCLabel
+    Left = 8
+    Height = 45
+    Top = 120
+    Width = 254
+    Background.Gradient1.StartColor = clWhite
+    Background.Gradient1.EndColor = clBlack
+    Background.Gradient1.GradientType = gtLinear
+    Background.Gradient1.Point1XPercent = 0
+    Background.Gradient1.Point1YPercent = 0
+    Background.Gradient1.Point2XPercent = 0
+    Background.Gradient1.Point2YPercent = 100
+    Background.Gradient2.StartColor = clWhite
+    Background.Gradient2.EndColor = clBlack
+    Background.Gradient2.GradientType = gtLinear
+    Background.Gradient2.Point1XPercent = 0
+    Background.Gradient2.Point1YPercent = 0
+    Background.Gradient2.Point2XPercent = 0
+    Background.Gradient2.Point2YPercent = 100
+    Background.Gradient1EndPercent = 35
+    Background.Style = bbsClear
+    Border.Style = bboNone
+    Caption = '(c) 2024 Massimo Magnano'
+    FontEx.Color = clDefault
+    FontEx.FontQuality = fqSystemClearType
+    FontEx.Height = 18
+    FontEx.Shadow = True
+    FontEx.ShadowColor = clSilver
+    FontEx.ShadowRadius = 5
+    FontEx.ShadowOffsetX = 5
+    FontEx.ShadowOffsetY = 5
+    FontEx.Style = [fsBold]
+    Rounding.RoundX = 1
+    Rounding.RoundY = 1
   end
 end

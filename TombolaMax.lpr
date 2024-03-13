@@ -10,7 +10,7 @@ uses
   athreads,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, TombolaMax_Main, tombolamax_generate
+  Forms, TombolaMax_Main, tombolamax_generate, tombolamax_info
   { you can add units after this };
 
 {$R *.res}
@@ -21,6 +21,7 @@ begin
   Application.Initialize;
   Application.CreateForm(TFormTombola, FormTombola);
   Application.CreateForm(TFormGenerate, FormGenerate);
+  Application.CreateForm(TFormInfo, FormInfo);
   Application.Run;
 end.
 

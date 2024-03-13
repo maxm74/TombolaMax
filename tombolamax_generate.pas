@@ -40,9 +40,9 @@ type
     frCartelle: TfrUserDataset;
     procedure btPictureNumeriClick(Sender: TObject);
     procedure cbBackImageChange(Sender: TObject);
+    procedure frReportCartelleAfterPrint(Sender: TfrReport);
     procedure frReportCartelleEnterRect(Memo: TStringList; View: TfrView);
     procedure frReportCartelleGetValue(const ParName: String; var ParValue: Variant);
-    procedure totCartelleChange(Sender: TObject; AByUser: boolean);
     procedure btGenerateClick(Sender: TObject);
     procedure frCartelleCheckEOF(Sender: TObject; var Eof: Boolean);
     procedure frCartelleFirst(Sender: TObject);
@@ -53,6 +53,7 @@ type
     curCartella :Integer;
     Cartelle: array of TCartella;
     Duplicati, DuplicatiCon : array of Integer;
+    FrontPrinted :Boolean;
 
     function CreaGruppoCartelle: TGruppoCartelle;
     function InDuplicati(NumCartella: Integer):Boolean;
@@ -74,12 +75,12 @@ procedure TFormGenerate.btGenerateClick(Sender: TObject);
 var
   i, k, j, NumGruppi,
   NumCartInizio :Integer;
-  curGruppo, risGruppo :TGruppoCartelle;
-  duplicates:Boolean;
+  curGruppo :TGruppoCartelle;
+  //duplicates:Boolean;
   msg:String;
-  newPage:TFrPage;
 
 begin
+  FrontPrinted :=False;
   totCartelleEnter(nil);
   Application.ProcessMessages;
 
@@ -141,16 +142,14 @@ begin
 
   frReportCartelle.LoadFromFile('report4.lrf');
   frReportCartelle.ShowReport;
-  if cbBackImage.Checked then
+  if FrontPrinted and cbBackImage.Checked then
   begin
-    ShowMessage('Inserisci di nuovo le Cartelle nella Stampante per Stampare Il retro');
-    frReportCartelleBack.LoadFromFile('report4-back.lrf');
-    frReportCartelleBack.ShowReport;
+    if (MessageDlg('Inserisci di nuovo le Cartelle nella Stampante per Stampare Il retro', mtConfirmation, [mbOk, mbCancel], 0) = mrOk) then
+    begin
+      frReportCartelleBack.LoadFromFile('report4-back.lrf');
+      frReportCartelleBack.ShowReport;
+    end;
   end;
-end;
-
-procedure TFormGenerate.totCartelleChange(Sender: TObject; AByUser: boolean);
-begin
 end;
 
 procedure TFormGenerate.frReportCartelleGetValue(const ParName: String; var ParValue: Variant);
@@ -213,6 +212,11 @@ begin
          pictureCartella:='';
          btPictureCartella.Click;
        end;
+end;
+
+procedure TFormGenerate.frReportCartelleAfterPrint(Sender: TfrReport);
+begin
+  FrontPrinted :=True;
 end;
 
 procedure TFormGenerate.frCartelleCheckEOF(Sender: TObject; var Eof: Boolean);

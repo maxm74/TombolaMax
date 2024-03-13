@@ -46,6 +46,8 @@ type
     tbNew: TToolButton;
     ToolButton1: TToolButton;
     tbGenerate: TToolButton;
+    ToolButton2: TToolButton;
+    tbInfo: TToolButton;
     procedure btEstraiAnnullaClick(Sender: TObject);
     procedure btEstraiCasualeClick(Sender: TObject);
     procedure btGioca2Click(Sender: TObject);
@@ -55,6 +57,7 @@ type
     procedure FormResize(Sender: TObject);
     procedure tbGenerateClick(Sender: TObject);
     procedure tbNewClick(Sender: TObject);
+    procedure tbInfoClick(Sender: TObject);
   private
     buttons :array[1..90] of TColorSpeedButton;
     lastDown:TBGRASpeedButton;
@@ -73,7 +76,7 @@ implementation
 
 {$R *.lfm}
 
-uses tombolamax_generate;
+uses tombolamax_generate, tombolamax_info;
 
 { TFormTombola }
 
@@ -119,6 +122,11 @@ begin
     buttons[i].StateNormal.Color:=clWhite;
     buttons[i].Tag :=0; //Non estratto
   end;
+end;
+
+procedure TFormTombola.tbInfoClick(Sender: TObject);
+begin
+  FormInfo.ShowModal;
 end;
 
 procedure TFormTombola.FormCreate(Sender: TObject);
@@ -227,9 +235,6 @@ begin
 end;
 
 procedure TFormTombola.btEstraiClick(Sender: TObject);
-var
-   i :Integer;
-
 begin
   if (buttons[edEstratto.Value].Tag = 0) then
   begin

@@ -2,17 +2,17 @@
 <CONFIG>
   <LazReport>
     <Version Value="31"/>
-    <Title Value=""/>
+    <Title Value="TombolaMax_Numeri"/>
     <Subject Value=""/>
     <KeyWords Value=""/>
     <Comments Value=""/>
     <ReportCreateDate Value="2024-02-28 17:59:27"/>
-    <ReportLastChange Value="2024-03-06 16:36:57"/>
+    <ReportLastChange Value="2024-03-13 10:13:48"/>
     <ReportVersionBuild Value=""/>
     <ReportVersionMajor Value=""/>
     <ReportVersionMinor Value=""/>
     <ReportVersionRelease Value=""/>
-    <ReportAutor Value=""/>
+    <ReportAutor Value="MaxM"/>
     <Script Value=""/>
     <Pages>
       <PrintToDefault Value="False"/>

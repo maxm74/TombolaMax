@@ -40,6 +40,19 @@ object FormTombola: TFormTombola
       Caption = 'Genera Cartelle'
       OnClick = tbGenerateClick
     end
+    object ToolButton2: TToolButton
+      Left = 177
+      Height = 32
+      Top = 2
+      Caption = 'ToolButton2'
+      Style = tbsSeparator
+    end
+    object tbInfo: TToolButton
+      Left = 185
+      Top = 2
+      Caption = ' Info...'
+      OnClick = tbInfoClick
+    end
   end
   object bcTabellone: TBCPanel
     Left = 0

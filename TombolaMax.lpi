@@ -14,6 +14,12 @@
       </XPManifest>
       <Icon Value="0"/>
     </General>
+    <VersionInfo>
+      <UseVersionInfo Value="True"/>
+      <MajorVersionNr Value="1"/>
+      <Language Value="0410"/>
+      <StringTable CompanyName="MaxM" LegalCopyright="2024 Massimo Magnano" ProductName="TombolaMax" ProductVersion="1.0"/>
+    </VersionInfo>
     <BuildModes>
       <Item Name="Debug" Default="True"/>
       <Item Name="Release">
@@ -21,7 +27,7 @@
           <Version Value="11"/>
           <PathDelim Value="\"/>
           <Target>
-            <Filename Value="TombolaMax"/>
+            <Filename Value="bin\$(TargetCPU)-$(TargetOS)\TombolaMax"/>
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
@@ -83,6 +89,13 @@
         <Filename Value="tombolamax_generate.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormGenerate"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
+      <Unit>
+        <Filename Value="tombolamax_info.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="FormInfo"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
