@@ -63,6 +63,9 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="playwavepackage"/>
+      </Item>
+      <Item>
         <PackageName Value="lazreport"/>
       </Item>
       <Item>

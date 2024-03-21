@@ -1,11 +1,11 @@
 object FormTombola: TFormTombola
-  Left = 259
+  Left = 231
   Height = 600
-  Top = 89
-  Width = 850
+  Top = 72
+  Width = 900
   Caption = 'Tombola Max'
   ClientHeight = 600
-  ClientWidth = 850
+  ClientWidth = 900
   LCLVersion = '3.99.0.0'
   OnCreate = FormCreate
   OnResize = FormResize
@@ -13,7 +13,7 @@ object FormTombola: TFormTombola
     Left = 0
     Height = 40
     Top = 0
-    Width = 850
+    Width = 900
     ButtonHeight = 32
     ButtonWidth = 32
     Caption = 'BCToolBar1'
@@ -103,7 +103,7 @@ object FormTombola: TFormTombola
     Left = 550
     Height = 560
     Top = 40
-    Width = 300
+    Width = 350
     Align = alRight
     Background.Color = clWhite
     Background.Gradient1.StartColor = clWhite
@@ -176,6 +176,7 @@ object FormTombola: TFormTombola
       FontEx.Style = [fsBold]
       Rounding.RoundX = 1
       Rounding.RoundY = 1
+      OnClick = lbEstrattoClick
     end
     object lbEstratto1: TBCLabel
       Left = 24
@@ -210,6 +211,7 @@ object FormTombola: TFormTombola
       FontEx.Style = [fsBold]
       Rounding.RoundX = 1
       Rounding.RoundY = 1
+      OnClick = lbEstrattoClick
     end
     object lbEstrattoUltimi: TBCLabel
       Left = 9
@@ -279,6 +281,7 @@ object FormTombola: TFormTombola
       FontEx.Style = [fsBold]
       Rounding.RoundX = 1
       Rounding.RoundY = 1
+      OnClick = lbEstrattoClick
     end
     object lbEstratto3: TBCLabel
       Left = 160
@@ -313,6 +316,7 @@ object FormTombola: TFormTombola
       FontEx.Style = [fsBold]
       Rounding.RoundX = 1
       Rounding.RoundY = 1
+      OnClick = lbEstrattoClick
     end
     object ColorSpeedButton1: TColorSpeedButton
       Left = 20
@@ -345,7 +349,7 @@ object FormTombola: TFormTombola
       Left = 8
       Height = 200
       Top = 352
-      Width = 287
+      Width = 336
       Anchors = [akLeft, akBottom]
       Background.Color = clWhite
       Background.Gradient1.StartColor = clWhite
@@ -414,7 +418,7 @@ object FormTombola: TFormTombola
       end
       object btSelTab1: TBGRASpeedButton
         Tag = 1
-        Left = 48
+        Left = 24
         Height = 40
         Top = 80
         Width = 94
@@ -429,7 +433,7 @@ object FormTombola: TFormTombola
       end
       object btSelTab2: TBGRASpeedButton
         Tag = 2
-        Left = 142
+        Left = 118
         Height = 40
         Top = 80
         Width = 94
@@ -445,7 +449,7 @@ object FormTombola: TFormTombola
       end
       object btSelTab3: TBGRASpeedButton
         Tag = 3
-        Left = 48
+        Left = 24
         Height = 40
         Top = 120
         Width = 94
@@ -461,7 +465,7 @@ object FormTombola: TFormTombola
       end
       object btSelTab4: TBGRASpeedButton
         Tag = 4
-        Left = 142
+        Left = 118
         Height = 40
         Top = 120
         Width = 94
@@ -477,7 +481,7 @@ object FormTombola: TFormTombola
       end
       object btSelTab5: TBGRASpeedButton
         Tag = 5
-        Left = 48
+        Left = 24
         Height = 40
         Top = 160
         Width = 94
@@ -493,7 +497,7 @@ object FormTombola: TFormTombola
       end
       object btSelTab6: TBGRASpeedButton
         Tag = 6
-        Left = 142
+        Left = 118
         Height = 40
         Top = 160
         Width = 94
@@ -508,7 +512,7 @@ object FormTombola: TFormTombola
         OnClick = btSelTab1Click
       end
       object btEstraiCasuale: TBGRASpeedButton
-        Left = 136
+        Left = 127
         Height = 22
         Top = 7
         Width = 71
@@ -516,7 +520,7 @@ object FormTombola: TFormTombola
         OnClick = btEstraiCasualeClick
       end
       object btEstraiAnnulla: TBGRASpeedButton
-        Left = 208
+        Left = 199
         Height = 22
         Top = 7
         Width = 71
@@ -524,7 +528,7 @@ object FormTombola: TFormTombola
         OnClick = btEstraiAnnullaClick
       end
       object btEstrai: TBGRASpeedButton
-        Left = 64
+        Left = 55
         Height = 22
         Top = 7
         Width = 71
@@ -532,7 +536,7 @@ object FormTombola: TFormTombola
         OnClick = btEstraiClick
       end
       object edEstratto: TSpinEdit
-        Left = 9
+        Left = 0
         Height = 23
         Top = 7
         Width = 50
@@ -543,7 +547,7 @@ object FormTombola: TFormTombola
       end
       object btGioca2: TBGRASpeedButton
         Tag = 2
-        Left = 9
+        Left = 0
         Height = 22
         Top = 36
         Width = 50
@@ -551,10 +555,11 @@ object FormTombola: TFormTombola
         Caption = 'Ambo'
         GroupIndex = 2
         OnClick = btGioca2Click
+        OnDblClick = btGioca2DblClick
       end
       object btGioca3: TBGRASpeedButton
         Tag = 3
-        Left = 56
+        Left = 47
         Height = 22
         Top = 36
         Width = 50
@@ -562,10 +567,11 @@ object FormTombola: TFormTombola
         Caption = 'Terno'
         GroupIndex = 2
         OnClick = btGioca2Click
+        OnDblClick = btGioca2DblClick
       end
       object btGioca4: TBGRASpeedButton
         Tag = 4
-        Left = 104
+        Left = 94
         Height = 22
         Top = 36
         Width = 60
@@ -573,10 +579,11 @@ object FormTombola: TFormTombola
         Caption = 'Quaterna'
         GroupIndex = 2
         OnClick = btGioca2Click
+        OnDblClick = btGioca2DblClick
       end
       object btGioca5: TBGRASpeedButton
         Tag = 5
-        Left = 161
+        Left = 151
         Height = 22
         Top = 36
         Width = 60
@@ -584,9 +591,11 @@ object FormTombola: TFormTombola
         Caption = 'Cinquina'
         GroupIndex = 2
         OnClick = btGioca2Click
+        OnDblClick = btGioca2DblClick
       end
-      object btGioca0: TBGRASpeedButton
-        Left = 219
+      object btGioca6: TBGRASpeedButton
+        Tag = 6
+        Left = 208
         Height = 22
         Top = 36
         Width = 60
@@ -594,6 +603,34 @@ object FormTombola: TFormTombola
         Caption = 'Tombola'
         GroupIndex = 2
         OnClick = btGioca2Click
+        OnDblClick = btGioca2DblClick
+      end
+      object btGioca0: TBGRASpeedButton
+        Left = 265
+        Height = 22
+        Top = 36
+        Width = 71
+        AllowAllUp = True
+        Caption = 'Tombolina'
+        GroupIndex = 2
+        OnClick = btGioca2Click
+        OnDblClick = btGioca2DblClick
+      end
+      object cbSuoni: TCheckBox
+        Left = 256
+        Height = 19
+        Top = 80
+        Width = 48
+        Caption = 'Suoni'
+        TabOrder = 1
+      end
+      object btRipeto: TBGRASpeedButton
+        Left = 265
+        Height = 22
+        Top = 104
+        Width = 71
+        Caption = 'Ripeto'
+        OnClick = btRipetoClick
       end
     end
     object lbEstrattoUltimo: TBCLabel
@@ -918,5 +955,25 @@ object FormTombola: TFormTombola
       03E9A87C03E9A87CA3AA2BA9F9C69BF0FEE3199EF9C6F7FFF9F7AFFFF35FFFF8
       FABFFFFDAECFC277BCFE0F761DD4A2
     }
+  end
+  object playsound: Tplaysound
+    About.Description.Strings = (
+      'Plays WAVE sounds in Windows or Linux'#13#10'Public methods: Execute and StopSound'
+    )
+    About.Title = 'About PlaySound'
+    About.Height = 400
+    About.Width = 400
+    About.Font.Color = clNavy
+    About.Font.Height = -13
+    About.BackGroundColor = clCream
+    About.Version = '0.0.8'
+    About.Authorname = 'Gordon Bamber'
+    About.Organisation = 'Public Domain'
+    About.AuthorEmail = 'minesadorada@charcodelvalle.com'
+    About.ComponentName = 'PlaySound'
+    About.LicenseType = abModifiedGPL
+    PlayCommand = 'sndPlaySound'
+    Left = 816
+    Top = 232
   end
 end

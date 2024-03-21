@@ -6,20 +6,23 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Menus, ComCtrls, ExtCtrls,
-  Buttons, Spin, BCToolBar, ColorSpeedButton, BGRASpeedButton, BCListBox, BCPanel,
-  BCLabel, BGRAImageList;
+  Buttons, Spin, StdCtrls, BCToolBar, ColorSpeedButton, BGRASpeedButton, BCListBox, BCPanel,
+  BCLabel, BGRAImageList, BCImageButton, uplaysound;
 
 type
 
   { TFormTombola }
 
   TFormTombola = class(TForm)
+    btRipeto: TBGRASpeedButton;
+    btGioca0: TBGRASpeedButton;
+    cbSuoni: TCheckBox;
     lbEstrattoUltimo: TBCLabel;
     btGioca2: TBGRASpeedButton;
     btGioca3: TBGRASpeedButton;
     btGioca4: TBGRASpeedButton;
     btGioca5: TBGRASpeedButton;
-    btGioca0: TBGRASpeedButton;
+    btGioca6: TBGRASpeedButton;
     btEstraiCasuale: TBGRASpeedButton;
     btEstrai: TBGRASpeedButton;
     btEstraiAnnulla: TBGRASpeedButton;
@@ -43,6 +46,7 @@ type
     ColorSpeedButton1: TColorSpeedButton;
     lbGioca: TBCLabel;
     Panel1: TBCPanel;
+    playsound: Tplaysound;
     tbNew: TToolButton;
     ToolButton1: TToolButton;
     tbGenerate: TToolButton;
@@ -52,9 +56,12 @@ type
     procedure btEstraiCasualeClick(Sender: TObject);
     procedure btGioca2Click(Sender: TObject);
     procedure btEstraiClick(Sender: TObject);
+    procedure btGioca2DblClick(Sender: TObject);
+    procedure btRipetoClick(Sender: TObject);
     procedure btSelTab1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormResize(Sender: TObject);
+    procedure lbEstrattoClick(Sender: TObject);
     procedure tbGenerateClick(Sender: TObject);
     procedure tbNewClick(Sender: TObject);
     procedure tbInfoClick(Sender: TObject);
@@ -109,7 +116,7 @@ begin
   btGioca3.Down:=False;
   btGioca4.Down:=False;
   btGioca5.Down:=False;
-  btGioca0.Down:=False;
+  btGioca6.Down:=False;
   btSelTab1.Down:=False;
   btSelTab2.Down:=False;
   btSelTab3.Down:=False;
@@ -176,6 +183,15 @@ begin
     buttons[i].Height:=butHeight;
     buttons[i].Font.Height:=Trunc(buttons[i].Height*75/100);
     inc(i);
+  end;
+end;
+
+procedure TFormTombola.lbEstrattoClick(Sender: TObject);
+begin
+  if cbSuoni.Checked and (TBCLabel(Sender).Caption<>'') then
+  begin
+    playsound.SoundFile:=myPath+'suoni\'+TBCLabel(Sender).Caption+'.wav';
+    playsound.Execute;
   end;
 end;
 
@@ -259,8 +275,56 @@ begin
     buttons[edEstratto.Value].Tag := 1;
     lbEstrattoUltimo.Visible :=True;
     lbEstratto.Caption :=IntToStr(edEstratto.Value);
+
+    if cbSuoni.Checked then
+    begin
+      playsound.SoundFile:=myPath+'suoni\'+IntToStr(edEstratto.Value)+'.wav';
+      playsound.Execute;
+    end;
   end
   else MessageDlg('Numero '+IntToStr(edEstratto.Value)+' già estratto', mtError, [mbOk], 0);
+end;
+
+procedure TFormTombola.btGioca2DblClick(Sender: TObject);
+begin
+  if cbSuoni.Checked then
+  begin
+    Case TBGRASpeedButton(Sender).Tag of
+     0:begin
+           playsound.SoundFile:=myPath+'suoni\Ambo.wav';
+           playsound.Execute;
+       end;
+     2:begin
+           playsound.SoundFile:=myPath+'suoni\Ambo.wav';
+           playsound.Execute;
+       end;
+     3:begin
+           playsound.SoundFile:=myPath+'suoni\Terno.wav';
+           playsound.Execute;
+       end;
+     4:begin
+           playsound.SoundFile:=myPath+'suoni\Quaterna.wav';
+           playsound.Execute;
+       end;
+     5:begin
+           playsound.SoundFile:=myPath+'suoni\Cinquina.wav';
+           playsound.Execute;
+       end;
+     6:begin
+           playsound.SoundFile:=myPath+'suoni\Tombola.wav';
+           playsound.Execute;
+       end;
+     end;
+  end;
+end;
+
+procedure TFormTombola.btRipetoClick(Sender: TObject);
+begin
+  if cbSuoni.Checked then
+  begin
+    playsound.SoundFile:=myPath+'suoni\Ripeto.wav';
+    playsound.Execute;
+  end;
 end;
 
 procedure TFormTombola.btGioca2Click(Sender: TObject);
@@ -268,11 +332,54 @@ begin
   if TBGRASpeedButton(Sender).Down then
   begin
     Case TBGRASpeedButton(Sender).Tag of
-     0:lbGioca.Caption:='Si gioca per: Tombolino';
-     2:lbGioca.Caption:='Si gioca per: Terno';
-     3:lbGioca.Caption:='Si gioca per: Quaterna';
-     4:lbGioca.Caption:='Si gioca per: Cinquina';
-     5:lbGioca.Caption:='Si gioca per: Tombola';
+     0:begin
+         lbGioca.Caption:='Gioco Finito';
+         if cbSuoni.Checked then
+         begin
+           playsound.SoundFile:=myPath+'suoni\Tombolina.wav';
+           playsound.Execute;
+         end;
+       end;
+     2:begin
+         lbGioca.Caption:='Si gioca per: Terno';
+         if cbSuoni.Checked then
+         begin
+           playsound.SoundFile:=myPath+'suoni\Ambo.wav';
+           playsound.Execute;
+         end;
+       end;
+     3:begin
+         lbGioca.Caption:='Si gioca per: Quaterna';
+         if cbSuoni.Checked then
+         begin
+           playsound.SoundFile:=myPath+'suoni\Terno.wav';
+           playsound.Execute;
+         end;
+       end;
+     4:begin
+         lbGioca.Caption:='Si gioca per: Cinquina';
+         if cbSuoni.Checked then
+         begin
+           playsound.SoundFile:=myPath+'suoni\Quaterna.wav';
+           playsound.Execute;
+         end;
+       end;
+     5:begin
+         lbGioca.Caption:='Si gioca per: Tombola';
+         if cbSuoni.Checked then
+         begin
+           playsound.SoundFile:=myPath+'suoni\Cinquina.wav';
+           playsound.Execute;
+         end;
+       end;
+     6:begin
+         lbGioca.Caption:='Si gioca per: Tombolina';
+         if cbSuoni.Checked then
+         begin
+           playsound.SoundFile:=myPath+'suoni\Tombola.wav';
+           playsound.Execute;
+         end;
+       end;
      end;
     lbGioca.Visible :=True
   end

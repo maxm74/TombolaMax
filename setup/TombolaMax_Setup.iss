@@ -38,7 +38,8 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 Source: "C:\Programming\Lazarus\Projects\TombolaMax\bin\x86_64-win64\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Programming\Lazarus\Projects\TombolaMax\bin\x86_64-win64\*.lrf"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Programming\Lazarus\Projects\TombolaMax\report\*.*"; DestDir: "{app}\report"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Programming\Lazarus\Projects\TombolaMax\suoni\*.*"; DestDir: "{app}\suoni"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

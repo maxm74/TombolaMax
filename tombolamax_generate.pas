@@ -64,6 +64,7 @@ type
 
 var
   FormGenerate: TFormGenerate;
+  myPath: String='';
 
 implementation
 
@@ -140,13 +141,13 @@ begin
     ShowMessage('DUPLICATI '+ msg);
   end;
 
-  frReportCartelle.LoadFromFile('report4.lrf');
+  frReportCartelle.LoadFromFile(myPath+'report\report4.lrf');
   frReportCartelle.ShowReport;
   if FrontPrinted and cbBackImage.Checked then
   begin
     if (MessageDlg('Inserisci di nuovo le Cartelle nella Stampante per Stampare Il retro', mtConfirmation, [mbOk, mbCancel], 0) = mrOk) then
     begin
-      frReportCartelleBack.LoadFromFile('report4-back.lrf');
+      frReportCartelleBack.LoadFromFile(myPath+'report\report4-back.lrf');
       frReportCartelleBack.ShowReport;
     end;
   end;
@@ -340,6 +341,12 @@ begin
     if Result then break;
   end;
 end;
+
+initialization
+  {$ifopt D+}
+     myPath :='..\..\';
+  {$endif}
+
 
 end.
 
