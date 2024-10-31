@@ -48,10 +48,16 @@ object FormTombola: TFormTombola
       Style = tbsSeparator
     end
     object tbInfo: TToolButton
-      Left = 185
+      Left = 229
       Top = 2
       Caption = ' Info...'
       OnClick = tbInfoClick
+    end
+    object tbSuoni: TToolButton
+      Left = 185
+      Top = 2
+      MenuItem = itemSuoni
+      Style = tbsDropDown
     end
   end
   object bcTabellone: TBCPanel
@@ -387,7 +393,7 @@ object FormTombola: TFormTombola
         Left = 9
         Height = 15
         Top = 64
-        Width = 109
+        Width = 108
         Background.Gradient1.StartColor = clWhite
         Background.Gradient1.EndColor = clBlack
         Background.Gradient1.GradientType = gtLinear
@@ -672,7 +678,7 @@ object FormTombola: TFormTombola
       Left = 1
       Height = 56
       Top = 288
-      Width = 249
+      Width = 250
       Background.Gradient1.StartColor = clWhite
       Background.Gradient1.EndColor = clBlack
       Background.Gradient1.GradientType = gtLinear
@@ -975,5 +981,25 @@ object FormTombola: TFormTombola
     PlayCommand = 'sndPlaySound'
     Left = 816
     Top = 232
+  end
+  object menuSuoni: TPopupMenu
+    Left = 839
+    Top = 348
+    object itemSuoni: TMenuItem
+    end
+  end
+  object EnumFiles: TMM_UI_EnumFilesINMenuItem
+    MenuItem = itemSuoni
+    BasePaths.Strings = (
+      'suoni'
+    )
+    EnumFilter = '*'
+    DefaultItem = 'Bambino'
+    EnumAttr = 16
+    DeleteExtFromCaption = True
+    CheckedStyle = True
+    AutoMenuItemVisible = False
+    Left = 839
+    Top = 296
   end
 end

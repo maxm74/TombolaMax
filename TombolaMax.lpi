@@ -63,6 +63,9 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="MaxM_UI"/>
+      </Item>
+      <Item>
         <PackageName Value="playwavepackage"/>
       </Item>
       <Item>
