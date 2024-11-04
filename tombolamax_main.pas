@@ -76,6 +76,7 @@ type
     Estratti:array[0..3] of Integer;
     NumeriDisponibili:array of Integer;
 
+    procedure Estrai(ANumero: Integer);
     procedure PlayFile(AName: String);
 
   public
@@ -140,6 +141,37 @@ end;
 procedure TFormTombola.tbInfoClick(Sender: TObject);
 begin
   FormInfo.ShowModal;
+end;
+
+procedure TFormTombola.Estrai(ANumero: Integer);
+begin
+  if (buttons[ANumero].Tag = 0) then
+  begin
+    Inc(cEstratti);
+    lbEstrattoUltimi.Visible :=(cEstratti>1);
+    if (cEstratti>1) then
+    begin;
+      if (Estratti[0] > 0) then
+      begin
+        Estratti[3] :=Estratti[2];
+        Estratti[2] :=Estratti[1];
+        Estratti[1] :=Estratti[0];
+      end;
+
+      if (Estratti[1]<>0) then lbEstratto1.Caption :=IntToStr(Estratti[1]) else lbEstratto1.Caption :='';
+      if (Estratti[2]<>0) then lbEstratto2.Caption :=IntToStr(Estratti[2]) else lbEstratto2.Caption :='';
+      if (Estratti[3]<>0) then lbEstratto3.Caption :=IntToStr(Estratti[3]) else lbEstratto3.Caption :='';
+    end;
+    Estratti[0] :=ANumero;
+
+    buttons[edEstratto.Value].StateNormal.Color :=clRed;
+    buttons[edEstratto.Value].Tag := 1;
+    lbEstrattoUltimo.Visible :=True;
+    lbEstratto.Caption :=IntToStr(ANumero);
+
+    PlayFile(IntToStr(ANumero));
+  end
+  else MessageDlg('Numero '+IntToStr(ANumero)+' già estratto', mtError, [mbOk], 0);
 end;
 
 procedure TFormTombola.PlayFile(AName: String);
@@ -265,33 +297,7 @@ end;
 
 procedure TFormTombola.btEstraiClick(Sender: TObject);
 begin
-  if (buttons[edEstratto.Value].Tag = 0) then
-  begin
-    Inc(cEstratti);
-    lbEstrattoUltimi.Visible :=(cEstratti>1);
-    if (cEstratti>1) then
-    begin;
-      if (Estratti[0] > 0) then
-      begin
-        Estratti[3] :=Estratti[2];
-        Estratti[2] :=Estratti[1];
-        Estratti[1] :=Estratti[0];
-      end;
-
-      if (Estratti[1]<>0) then lbEstratto1.Caption :=IntToStr(Estratti[1]) else lbEstratto1.Caption :='';
-      if (Estratti[2]<>0) then lbEstratto2.Caption :=IntToStr(Estratti[2]) else lbEstratto2.Caption :='';
-      if (Estratti[3]<>0) then lbEstratto3.Caption :=IntToStr(Estratti[3]) else lbEstratto3.Caption :='';
-    end;
-    Estratti[0] :=edEstratto.Value;
-
-    buttons[edEstratto.Value].StateNormal.Color :=clRed;
-    buttons[edEstratto.Value].Tag := 1;
-    lbEstrattoUltimo.Visible :=True;
-    lbEstratto.Caption :=IntToStr(edEstratto.Value);
-
-    PlayFile(IntToStr(edEstratto.Value));
-  end
-  else MessageDlg('Numero '+IntToStr(edEstratto.Value)+' già estratto', mtError, [mbOk], 0);
+  Estrai(edEstratto.Value);
 end;
 
 procedure TFormTombola.btGioca2DblClick(Sender: TObject);
@@ -359,7 +365,7 @@ begin
          Numero :=NumeriDisponibili[iNumero];
          Delete(NumeriDisponibili, iNumero, 1);
          edEstratto.Value:=Numero;
-         btEstraiClick(nil);
+         Estrai(Numero);
        end
   else begin
          if (MessageDlg('Numeri Finiti :'+#13#10+'Vuoi iniziare una Nuova Partita ?', mtConfirmation, [mbYes, mbNo], 0)=mrYes)
