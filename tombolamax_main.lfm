@@ -628,6 +628,8 @@ object FormTombola: TFormTombola
         Top = 80
         Width = 48
         Caption = 'Suoni'
+        Checked = True
+        State = cbChecked
         TabOrder = 1
       end
       object btRipeto: TBGRASpeedButton
@@ -714,6 +716,7 @@ object FormTombola: TFormTombola
   object BGRAImageList1: TBGRAImageList
     Height = 36
     Width = 90
+    UseBGRADraw = False
     Left = 736
     Top = 232
     Bitmap = {
@@ -994,7 +997,7 @@ object FormTombola: TFormTombola
       'suoni'
     )
     EnumFilter = '*'
-    DefaultItem = 'Bambino'
+    DefaultItem = 'IviBordi'
     EnumAttr = 16
     DeleteExtFromCaption = True
     CheckedStyle = True
