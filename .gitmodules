@@ -1,0 +1,3 @@
+[submodule "use/MaxM"]
+	path = use/MaxM
+	url = git@github.com:maxm74/MaxM.git
