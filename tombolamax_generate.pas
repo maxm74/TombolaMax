@@ -345,7 +345,7 @@ end;
 initialization
   {$ifopt D+}
      //myPath :='..\..\';
-     myPath:= ExpandFileName('..\..\', ExtractFilePath(ParamStr(0)));
+     myPath:= ExpandFileName(ExtractFilePath(ParamStr(0)));
   {$else}
      myPath:= ExtractFilePath(ParamStr(0));
   {$endif}
