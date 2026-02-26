@@ -1,11 +1,11 @@
 object FormTombola: TFormTombola
   Left = 231
-  Height = 750
+  Height = 780
   Top = 72
-  Width = 1125
+  Width = 1239
   Caption = 'Tombola Max'
-  ClientHeight = 750
-  ClientWidth = 1125
+  ClientHeight = 780
+  ClientWidth = 1239
   DesignTimePPI = 120
   LCLVersion = '4.99.0.0'
   OnCreate = FormCreate
@@ -14,7 +14,7 @@ object FormTombola: TFormTombola
     Left = 0
     Height = 50
     Top = 0
-    Width = 1125
+    Width = 1239
     ButtonHeight = 40
     ButtonWidth = 40
     Caption = 'BCToolBar1'
@@ -36,26 +36,26 @@ object FormTombola: TFormTombola
       Style = tbsSeparator
     end
     object tbGenerate: TToolButton
-      Left = 110
+      Left = 108
       Top = 2
       Caption = 'Genera Cartelle'
       OnClick = tbGenerateClick
     end
     object ToolButton2: TToolButton
-      Left = 221
+      Left = 219
       Height = 40
       Top = 2
       Caption = 'ToolButton2'
       Style = tbsSeparator
     end
     object tbInfo: TToolButton
-      Left = 286
+      Left = 282
       Top = 2
       Caption = ' Info...'
       OnClick = tbInfoClick
     end
     object tbSuoni: TToolButton
-      Left = 231
+      Left = 227
       Top = 2
       MenuItem = itemSuoni
       Style = tbsDropDown
@@ -63,9 +63,9 @@ object FormTombola: TFormTombola
   end
   object bcTabellone: TBCPanel
     Left = 0
-    Height = 700
+    Height = 730
     Top = 50
-    Width = 688
+    Width = 704
     Align = alClient
     Background.Color = 4227327
     Background.Gradient1.StartColor = clWhite
@@ -107,10 +107,10 @@ object FormTombola: TFormTombola
     TabOrder = 1
   end
   object bcEdit1: TBCPanel
-    Left = 688
-    Height = 700
+    Left = 704
+    Height = 730
     Top = 50
-    Width = 437
+    Width = 535
     Align = alRight
     Background.Color = clWhite
     Background.Gradient1.StartColor = clWhite
@@ -222,9 +222,9 @@ object FormTombola: TFormTombola
     end
     object lbEstrattoUltimi: TBCLabel
       Left = 11
-      Height = 21
-      Top = 260
-      Width = 114
+      Height = 36
+      Top = 250
+      Width = 181
       Background.Gradient1.StartColor = clWhite
       Background.Gradient1.EndColor = clBlack
       Background.Gradient1.GradientType = gtLinear
@@ -245,7 +245,7 @@ object FormTombola: TFormTombola
       Caption = 'Ultimi Estratti :'
       FontEx.Color = clDefault
       FontEx.FontQuality = fqSystemClearType
-      FontEx.Height = 16
+      FontEx.Height = 26
       FontEx.Shadow = False
       FontEx.ShadowRadius = 5
       FontEx.ShadowOffsetX = 5
@@ -354,9 +354,9 @@ object FormTombola: TFormTombola
     end
     object Panel1: TBCPanel
       Left = 10
-      Height = 250
-      Top = 440
-      Width = 420
+      Height = 282
+      Top = 438
+      Width = 520
       Anchors = [akLeft, akBottom]
       Background.Color = clWhite
       Background.Gradient1.StartColor = clWhite
@@ -392,9 +392,9 @@ object FormTombola: TFormTombola
       TabOrder = 0
       object BCLabel7: TBCLabel
         Left = 11
-        Height = 20
-        Top = 80
-        Width = 139
+        Height = 30
+        Top = 100
+        Width = 202
         Background.Gradient1.StartColor = clWhite
         Background.Gradient1.EndColor = clBlack
         Background.Gradient1.GradientType = gtLinear
@@ -415,6 +415,7 @@ object FormTombola: TFormTombola
         Caption = 'Seleziona Tabellone :'
         FontEx.Color = clDefault
         FontEx.FontQuality = fqSystemClearType
+        FontEx.Height = 22
         FontEx.Shadow = False
         FontEx.ShadowRadius = 5
         FontEx.ShadowOffsetX = 5
@@ -427,7 +428,7 @@ object FormTombola: TFormTombola
         Tag = 1
         Left = 30
         Height = 50
-        Top = 100
+        Top = 132
         Width = 118
         AllowAllUp = True
         GroupIndex = 1
@@ -442,7 +443,7 @@ object FormTombola: TFormTombola
         Tag = 2
         Left = 148
         Height = 50
-        Top = 100
+        Top = 132
         Width = 117
         AllowAllUp = True
         Flat = True
@@ -458,7 +459,7 @@ object FormTombola: TFormTombola
         Tag = 3
         Left = 30
         Height = 50
-        Top = 150
+        Top = 182
         Width = 118
         AllowAllUp = True
         Flat = True
@@ -474,7 +475,7 @@ object FormTombola: TFormTombola
         Tag = 4
         Left = 148
         Height = 50
-        Top = 150
+        Top = 182
         Width = 117
         AllowAllUp = True
         Flat = True
@@ -490,7 +491,7 @@ object FormTombola: TFormTombola
         Tag = 5
         Left = 30
         Height = 50
-        Top = 200
+        Top = 232
         Width = 118
         AllowAllUp = True
         Flat = True
@@ -506,7 +507,7 @@ object FormTombola: TFormTombola
         Tag = 6
         Left = 148
         Height = 50
-        Top = 200
+        Top = 232
         Width = 117
         AllowAllUp = True
         Flat = True
@@ -519,126 +520,151 @@ object FormTombola: TFormTombola
         OnClick = btSelTab1Click
       end
       object btEstraiCasuale: TBGRASpeedButton
-        Left = 159
-        Height = 27
-        Top = 9
-        Width = 89
+        Left = 178
+        Height = 40
+        Top = 0
+        Width = 120
         Caption = 'Casuale'
+        Font.Height = -20
+        ParentFont = False
         OnClick = btEstraiCasualeClick
       end
       object btEstraiAnnulla: TBGRASpeedButton
-        Left = 249
-        Height = 27
-        Top = 9
-        Width = 89
+        Left = 300
+        Height = 40
+        Top = 0
+        Width = 113
         Caption = 'Annulla'
+        Font.Height = -20
+        ParentFont = False
         OnClick = btEstraiAnnullaClick
       end
       object btEstrai: TBGRASpeedButton
-        Left = 69
-        Height = 27
-        Top = 9
+        Left = 88
+        Height = 40
+        Top = 0
         Width = 89
         Caption = 'Estrai'
+        Font.Height = -20
+        ParentFont = False
         OnClick = btEstraiClick
       end
       object edEstratto: TSpinEdit
         Left = 0
-        Height = 28
-        Top = 9
-        Width = 62
+        Height = 40
+        Top = 0
+        Width = 80
+        AutoSize = False
+        Font.Height = -23
         MaxValue = 90
         MinValue = 1
+        ParentFont = False
         TabOrder = 0
         Value = 1
       end
       object btGioca2: TBGRASpeedButton
         Tag = 2
         Left = 0
-        Height = 27
+        Height = 40
         Top = 45
         Width = 62
         AllowAllUp = True
         Caption = 'Ambo'
+        Font.Height = -20
         GroupIndex = 2
+        ParentFont = False
         OnClick = btGioca2Click
         OnDblClick = btGioca2DblClick
       end
       object btGioca3: TBGRASpeedButton
         Tag = 3
-        Left = 59
-        Height = 27
+        Left = 64
+        Height = 40
         Top = 45
         Width = 62
         AllowAllUp = True
         Caption = 'Terno'
+        Font.Height = -20
         GroupIndex = 2
+        ParentFont = False
         OnClick = btGioca2Click
         OnDblClick = btGioca2DblClick
       end
       object btGioca4: TBGRASpeedButton
         Tag = 4
-        Left = 118
-        Height = 27
+        Left = 128
+        Height = 40
         Top = 45
-        Width = 74
+        Width = 96
         AllowAllUp = True
         Caption = 'Quaterna'
+        Font.Height = -20
         GroupIndex = 2
+        ParentFont = False
         OnClick = btGioca2Click
         OnDblClick = btGioca2DblClick
       end
       object btGioca5: TBGRASpeedButton
         Tag = 5
-        Left = 189
-        Height = 27
+        Left = 226
+        Height = 40
         Top = 45
-        Width = 75
+        Width = 91
         AllowAllUp = True
         Caption = 'Cinquina'
+        Font.Height = -20
         GroupIndex = 2
+        ParentFont = False
         OnClick = btGioca2Click
         OnDblClick = btGioca2DblClick
       end
       object btGioca6: TBGRASpeedButton
         Tag = 6
-        Left = 260
-        Height = 27
+        Left = 320
+        Height = 40
         Top = 45
-        Width = 75
+        Width = 88
         AllowAllUp = True
         Caption = 'Tombola'
+        Font.Height = -20
         GroupIndex = 2
+        ParentFont = False
         OnClick = btGioca2Click
         OnDblClick = btGioca2DblClick
       end
       object btGioca0: TBGRASpeedButton
-        Left = 331
-        Height = 27
+        Left = 410
+        Height = 40
         Top = 45
-        Width = 89
+        Width = 104
         AllowAllUp = True
         Caption = 'Tombolina'
+        Font.Height = -20
         GroupIndex = 2
+        ParentFont = False
         OnClick = btGioca2Click
         OnDblClick = btGioca2DblClick
       end
       object cbSuoni: TCheckBox
         Left = 320
-        Height = 24
-        Top = 100
-        Width = 58
+        Height = 32
+        Top = 248
+        Width = 71
         Caption = 'Suoni'
         Checked = True
+        Font.Height = -20
+        ParentFont = False
         State = cbChecked
         TabOrder = 1
       end
       object btRipeto: TBGRASpeedButton
-        Left = 331
-        Height = 28
-        Top = 130
-        Width = 89
+        Left = 410
+        Height = 40
+        Top = 96
+        Width = 104
         Caption = 'Ripeto'
+        Font.Height = -20
+        ParentFont = False
         OnClick = btRipetoClick
       end
     end
@@ -993,18 +1019,18 @@ object FormTombola: TFormTombola
     end
   end
   object EnumFiles: TMM_UI_EnumFilesINMenuItem
+    AutoClear = True
+    AutoVisible = False
     BasePaths.Strings = (
       'suoni'
     )
+    CheckedStyle = True
+    DefaultClick = True
     EnumFilter = '*'
     EnumAttr = 16
     DeleteExtFromCaption = True
-    DefaultItem = 'IviBordi'
+    DefaultCaption = 'IviBordi'
     MenuItem = itemSuoni
-    CheckedStyle = True
-    DefaultClick = True
-    AutoMenuItemClear = True
-    AutoMenuItemVisible = False
     Left = 1049
     Top = 370
   end
