@@ -63,6 +63,8 @@ type
     procedure btGioca2DblClick(Sender: TObject);
     procedure btRipetoClick(Sender: TObject);
     procedure btSelTab1Click(Sender: TObject);
+    procedure buttonMouseUp(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
     procedure FormCreate(Sender: TObject);
     procedure FormResize(Sender: TObject);
     procedure lbEstrattoClick(Sender: TObject);
@@ -144,7 +146,12 @@ begin
 end;
 
 procedure TFormTombola.Estrai(ANumero: Integer);
+var
+   strNumero: String;
+
 begin
+  strNumero:=IntToStr(ANumero);
+
   if (buttons[ANumero].Tag = 0) then
   begin
     Inc(cEstratti);
@@ -164,14 +171,15 @@ begin
     end;
     Estratti[0] :=ANumero;
 
-    buttons[edEstratto.Value].StateNormal.Color :=clRed;
-    buttons[edEstratto.Value].Tag := 1;
+    buttons[ANumero].StateNormal.Color :=clRed;
+    buttons[ANumero].Tag := 1;
+    edEstratto.Value:=ANumero;
     lbEstrattoUltimo.Visible :=True;
-    lbEstratto.Caption :=IntToStr(ANumero);
+    lbEstratto.Caption :=strNumero;
 
-    PlayFile(IntToStr(ANumero));
+    PlayFile(strNumero);
   end
-  else MessageDlg('Numero '+IntToStr(ANumero)+' già estratto', mtError, [mbOk], 0);
+  else MessageDlg('Numero '+strNumero+' già estratto', mtError, [mbOk], 0);
 end;
 
 procedure TFormTombola.PlayFile(AName: String);
@@ -206,6 +214,7 @@ begin
     buttons[i].ParentFont:=False;
     buttons[i].Tag:=0;  //Non estratto
     buttons[i].Parent :=bcTabellone;
+    buttons[i].OnMouseUp:= @buttonMouseUp;
     inc(i);
   end;
 end;
@@ -293,6 +302,14 @@ begin
   if curBt.Down
   then lastDown :=curBt
   else lastDown :=nil;
+end;
+
+procedure TFormTombola.buttonMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  if (TColorSpeedButton(Sender).Tag = 0) and (ssDouble in Shift) then
+  begin
+    Estrai(StrToInt(TColorSpeedButton(Sender).Caption));
+  end;
 end;
 
 procedure TFormTombola.btEstraiClick(Sender: TObject);

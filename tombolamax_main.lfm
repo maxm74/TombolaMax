@@ -30,7 +30,7 @@ object FormTombola: TFormTombola
     end
     object ToolButton1: TToolButton
       Left = 100
-      Height = 40
+      Height = 8
       Top = 2
       Caption = 'ToolButton1'
       Style = tbsSeparator
@@ -43,7 +43,7 @@ object FormTombola: TFormTombola
     end
     object ToolButton2: TToolButton
       Left = 219
-      Height = 40
+      Height = 8
       Top = 2
       Caption = 'ToolButton2'
       Style = tbsSeparator
@@ -335,6 +335,7 @@ object FormTombola: TFormTombola
       Font.Height = 20
       Visible = False
       ParentFont = False
+      OnMouseUp = buttonMouseUp
       TextAutoSize = True
       Toggle = False
       Pressed = False
